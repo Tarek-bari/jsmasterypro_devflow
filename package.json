@@ -11,9 +11,6 @@
   "dependencies": {
     "eslint-config-prettier": "^10.1.5",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.20.0",
-    "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "next": "15.3.4",
     "prettier": "^3.5.3",
@@ -23,11 +20,14 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "eslint-plugin-import": "^2.32.0",
+    "postcss": "^8.5.6",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
