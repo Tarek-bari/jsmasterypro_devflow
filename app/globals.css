@@ -1,4 +1,5 @@
-@import "tailwindcss/preflight";
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
 body {
@@ -397,4 +398,10 @@ code {
 [data-lexical-editor="true"] {
   height: 350px !important;
   overflow-y: auto !important;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
 }
