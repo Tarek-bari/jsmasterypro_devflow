@@ -3,8 +3,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
@@ -44,7 +42,7 @@ const MobileNavigation = () => {
             </p>
           </Link>
         </SheetClose>
-        <div className="no-scrollbar flex h-[calc(100vh-80px)] flex-col justify-between overflow-y-auto">
+        <div className="no-scrollbar flex h-[calc(100vh-80px)] flex-col gap-5 justify-between overflow-y-auto">
           <SheetClose asChild>
             <section className=" flex h-full flex-col gap-6 pt-16">
               <NavLinks isMobileNav />
