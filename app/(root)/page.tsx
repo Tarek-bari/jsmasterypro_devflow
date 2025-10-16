@@ -1,3 +1,5 @@
+import QuestionCard from "@/components/cards/QuestionCard";
+import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
@@ -7,50 +9,40 @@ const questions = [
   {
     _id: "1",
     title: "How to learn React?",
-    description: "I am new to React and want to learn it.",
+    description: "I want to learn React, can anyone help me?",
     tags: [
-      { _id: "1", name: "react" },
-      { _id: "2", name: "javascript" },
+      { _id: "1", name: "React" },
+      { _id: "2", name: "JavaScript" },
     ],
-    author: { _id: "1", name: "John Doe" },
-    upVotes: 10,
-    downVotes: 2,
+    author: {
+      _id: "1",
+      name: "John Doe",
+      image:
+        "https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg",
+    },
+    upvotes: 10,
     answers: 5,
     views: 100,
     createdAt: new Date(),
   },
   {
     _id: "2",
-    title: "Best practices for TypeScript in Next.js?",
-    description:
-      "What are some recommended patterns for using TypeScript with Next.js projects?",
+    title: "How to learn JavaScript?",
+    description: "I want to learn JavaScript, can anyone help me?",
     tags: [
-      { _id: "3", name: "typescript" },
-      { _id: "4", name: "nextjs" },
+      { _id: "1", name: "JavaScript" },
+      { _id: "2", name: "JavaScript" },
     ],
-    author: { _id: "2", name: "Jane Smith" },
-    upVotes: 15,
-    downVotes: 1,
-    answers: 3,
-    views: 80,
-    createdAt: new Date(),
-  },
-  {
-    _id: "3",
-    title: "How to manage state in large React apps?",
-    description:
-      "Should I use Redux, Context API, or something else for state management in big projects?",
-    tags: [
-      { _id: "1", name: "react" },
-      { _id: "5", name: "redux" },
-      { _id: "6", name: "state-management" },
-    ],
-    author: { _id: "3", name: "Alex Lee" },
-    upVotes: 8,
-    downVotes: 0,
-    answers: 4,
-    views: 120,
-    createdAt: new Date(),
+    author: {
+      _id: "1",
+      name: "John Doe",
+      image:
+        "https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg",
+    },
+    upvotes: 10,
+    answers: 5,
+    views: 100,
+    createdAt: new Date("2023-10-01"),
   },
 ];
 
@@ -59,13 +51,17 @@ interface SearchParams {
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
-  const { query = "" } = await searchParams;
+  const { query = "", filter = "" } = await searchParams;
 
-  const filteredQuestions = query
-    ? questions.filter((question) =>
-        question.title.toLowerCase().includes((query as string).toLowerCase())
-      )
-    : questions;
+  const filteredQuestions = questions.filter((question) => {
+    const matchesQuery = question.title
+      .toLowerCase()
+      .includes(query.toLowerCase());
+    const matchesFilter = filter
+      ? question.tags[0].name.toLowerCase() === filter.toLowerCase()
+      : true;
+    return matchesQuery && matchesFilter;
+  });
 
   return (
     <>
@@ -86,10 +82,10 @@ const Home = async ({ searchParams }: SearchParams) => {
           otherClasses="flex-1"
         />
       </section>
-      {/* Home Filer */}
+      <HomeFilter />
       <div className="mt-10 flex w-full flex-col gap-6">
         {filteredQuestions.map((question) => (
-          <h1 key={question._id}>{question.title}</h1>
+          <QuestionCard key={question._id} question={question} />
         ))}
       </div>
     </>
